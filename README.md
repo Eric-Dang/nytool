@@ -70,3 +70,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+# 依赖
+1. bootstrap-ccs npm install bootstrap (css)
+2. react-bootstrap npm install react-bootstrap (标签页，输入等控件)
+3. react-bootstrap-tabs  npm install react-bootstrap-tabs --save (tabs tab)

@@ -1,0 +1,31 @@
+.BaseBorder {
+    background-color: crimson;
+    height: auto;
+    width: auto;
+}
+
+.ToolButton {
+    height: auto;
+    width: auto;
+    margin-left: 10px;
+}
+
+.ToolButtonBorder {
+    background-color: coral;
+    height: 15%;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.ToolUIBorder {
+    background-color: bisque;
+    height: 85%;
+    width: 1000px;
+    box-sizing: border-box;
+}
+
+.defaultTip {
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
