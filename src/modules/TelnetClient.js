@@ -218,8 +218,7 @@ class TelnetClient{
     }
 }
 
-
-module.exports = {
+export default {
     TelnetClient:TelnetClient,
     strUtil:strUtil,
-} 
+}
