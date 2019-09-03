@@ -3,12 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from "./serviceWorker";
 import * as dataMgr from './dataMgr';
-import 'bootstrap/dist/css/bootstrap.min.css';
-class Test extends React.Component {
-    render() {
-        return (<button>aaaaa</button>)
-    }
-}
+import './modules/timeSpeed'
+import './bootstrap.min.css';
 
 class Show extends React.Component {
     render() {

@@ -34,7 +34,10 @@ export function regNewTool(name, render){
 // 获取所有功能按钮
 function GetShowInfo(f){
     if (toolConfig.length == 0)
-        return (<text className="defaultTip">还没新功能</text>);
+        return (
+        <div>
+        <text className="defaultTip">还没新功能</text>
+        </div>);
 
     var webShows = toolConfig.map(
         (x) => {
