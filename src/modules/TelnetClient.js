@@ -62,7 +62,8 @@ class TelnetClient{
     }
 
     connect(){
-        this.net = new net.Socket();
+        this.net = net.createConnection({host:this.host, port:this.port})
+        // new Socket();
         this.net.setEncoding('binary');
         if(this.timeout > 0)
             this.net.setTimeout(this.timeout, ()=>{
@@ -218,7 +219,4 @@ class TelnetClient{
     }
 }
 
-export default {
-    TelnetClient:TelnetClient,
-    strUtil:strUtil,
-}
+export default TelnetClient;

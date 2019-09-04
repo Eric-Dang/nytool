@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "electron.js",
-  "homepage":".",
+  "homepage": ".",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "rc-tabs": "^9.6.6",
@@ -12,6 +12,7 @@
     "react-bootstrap-tabs": "^1.0.2",
     "react-bootstrap-typeahead": "^3.4.6",
     "react-dom": "^16.9.0",
+    "react-polyfill": "0.0.2",
     "react-scripts": "3.1.1",
     "telnet-client": "^1.0.4"
   },
