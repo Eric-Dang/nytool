@@ -218,5 +218,10 @@ class TelnetClient{
         }
     }
 }
+// electron 
+// export default TelnetClient;
 
-export default TelnetClient;
+// nodejs
+module.exports = {
+    TelnetClient:TelnetClient
+}

@@ -1,7 +1,7 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path')
 const url = require('url')
-
+require('./localserver.js')
 
 // 保持一个对于 window 对象的全局引用，不然，当 JavaScript 被 GC，
 // window 会被自动地关闭
@@ -16,6 +16,7 @@ app.on('window-all-closed', function() {
   }
 });
 
+
 // 当 Electron 完成了初始化并且准备创建浏览器窗口的时候
 // 这个方法就被调用
 app.on('ready', function() {
@@ -23,15 +24,12 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({width: 800, height: 600});
 
   // 加载应用的 index.html
-//   mainWindow.loadURL("http://localhost:3001")    
-mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './build/index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-  
-
-
+  //   mainWindow.loadURL("http://localhost:3001")    
+  mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, './build/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
   // 打开开发工具
   mainWindow.openDevTools();
   mainWindow.flashFrame(true);

@@ -6,6 +6,19 @@ import * as dataMgr from './dataMgr';
 import './modules/timeSpeed'
 import './bootstrap.min.css';
 
+// const http = require('http');
+// const hostname = '127.0.0.1';
+// const port = 888;
+
+// const server = http.createServer(function(req, res) {
+//     console.log("createServer", req, res)
+//     res.end('Hello, World!\n');
+// });
+
+// server.listen(port, hostname, function() {
+//     console.log("Server is running at %s:%s", hostname, port);
+// });
+
 class Show extends React.Component {
     render() {
         return (
@@ -17,6 +30,12 @@ class Show extends React.Component {
 }
 
 ReactDOM.render(<Show/>, document.getElementById('root'))
+
+
+
+
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
