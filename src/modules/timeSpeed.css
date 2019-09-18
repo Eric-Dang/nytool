@@ -1,3 +1,39 @@
 text {
     font-family:'宋体';
 }
+.multdiv {
+    margin-top: 20px
+}
+.multInput {
+    margin-left: 30px
+}
+
+.multButton {
+    margin-left: 50px
+}
+
+.ipInput {
+    margin-left: 30px
+}
+
+.portInput {
+    margin-left: 62px;
+    margin-top: 10px
+}
+
+.addButton {
+    margin-top: 10px
+}
+
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.execButton {
+    margin-left: 30px;
+}
+.delButton {
+    margin-left: 60px;
+}
+

@@ -62,8 +62,8 @@ class TelnetClient{
     }
 
     connect(){
-        this.net = net.createConnection({host:this.host, port:this.port})
-        // new Socket();
+        this.net = net.Socket() // net.createConnection({host:this.host, port:this.port})
+
         this.net.setEncoding('binary');
         if(this.timeout > 0)
             this.net.setTimeout(this.timeout, ()=>{
@@ -102,7 +102,7 @@ class TelnetClient{
         else
         {
             this.sending = this.state
-            this.net.write(data, () =>{
+            this.net.write(data+this.irs, () =>{
                 this.sending = false
                 if(callback)
                     callback(true)
@@ -198,6 +198,11 @@ class TelnetClient{
         this.net.destroy()
         this.net = null
     }
+
+    release(){
+        this.net.destroy()
+        this.net = null
+    }
     
     on(evt, cb){
         if(!this.evts[evt]){
@@ -218,10 +223,12 @@ class TelnetClient{
         }
     }
 }
-// electron 
+// electron
+// 使用require
 // export default TelnetClient;
 
 // nodejs
+// 使用 import
 module.exports = {
     TelnetClient:TelnetClient
 }
