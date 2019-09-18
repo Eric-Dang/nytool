@@ -91,15 +91,15 @@ class TimeSpeed extends React.Component {
                     <text className="multText">加速倍数:</text><input type="text" id="mult" className="multInput"/>
                     <button className="multButton" onClick={()=>{this.onspeed()}}> 修改速度 </button><br/>
                 </div>
-                <text>-------------------------------------------------------------------------------------</text>
-                <div className="multdiv">
+                <hr />
+                <div className="serverdiv">
                     <text className='title'>服务器配置 </text><br/><br/>
                     <text className="ipText">服务器IP:</text><input type="text" id="ip" className="ipInput"/><br/>
                     <text className="portText">端口:</text><input type="text" id="port" className="portInput"/><br/>
                     <button className="addButton" onClick={()=>{this.onadd()}}> 添加 </button><br/>
                 </div>
-                <text>-------------------------------------------------------------------------------------</text>
-                <div className="multdiv">
+                <hr />
+                <div className="showdiv">
                     <text className='title'>已添加服务器</text><br/><br/>
                     <BootstrapTable data={connectList} striped={true} hover={true} selectRow={selectRowProp}>
                         <TableHeaderColumn dataField="id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>

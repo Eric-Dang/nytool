@@ -1,9 +1,16 @@
 text {
     font-family:'宋体';
 }
-.multdiv {
-    margin-top: 20px
+/* .multdiv {
+    background-color:red
 }
+.serverdiv {
+    background-color:yellow
+}
+
+.showdiv {
+    background-color:gray
+} */
 .multInput {
     margin-left: 30px
 }
