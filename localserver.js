@@ -1,13 +1,7 @@
 var http = require('http');
-const {TelnetClient} = require('./src/modules/TelnetClient')
-
-function strMapToObj(map) {
-  let obj = Object.create(null);
-  for (let [k,v] of map) {
-    obj[k] = v;
-  }
-  return obj;
-}
+const {TelnetClient} = require('./src/localServer/base/TelnetClient')
+var {getReqProcessFun} = require('./src/serviceMgr')
+// import * as dd from './src/serviceMgr'
 
 function getDateStr() {
     var d = new Date()
@@ -30,36 +24,9 @@ function parsingRequest(data){
 
 var server = http.createServer(function(request, response) {
     console.log(getDateStr() + ' Received request for:' + decodeURI(request.url));
-    var page, params = parsingRequest(decodeURI(request.url))
-    var allServers = JSON.parse(params.servers)
-    var count = allServers.length
-    allServers.forEach((server) =>{
-        var telnetConfig = {
-            host:server.ip,
-            port:Number(server.port),
-            username:'root',
-            password:'root',
-            debug:true,
-            shellPrompt:"***************************",
-            encoding:'GB2312'
-        }
-        
-        var t = new TelnetClient(telnetConfig)
-        t.on('authed', ()=>{
-            t.send("print('aaaaaaaaaaaaaa')")
-        })
-    
-        t.on('data', (data)=>{
-            console.log(getDateStr() + " ip:"+ server.ip + " port:" + server.port + " finsh!");
-            response.write("ip:"+ server.ip + " port:" + server.port + " finsh!");
-            count = count - 1
-            if(count === 0)
-                response.end()
-
-            t.release()
-        })
-        t.connect()
-    })
+    var page, clientData = parsingRequest(decodeURI(request.url))
+    var fun = getReqProcessFun(page)
+    fun(clientData, response)
 });
 server.listen(999, function() {
     console.log(getDateStr() + ' Server is listening on port 999');

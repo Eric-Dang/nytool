@@ -3,21 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from "./serviceWorker";
 import * as dataMgr from './dataMgr';
-import './modules/timeSpeed'
+import './webClient/modules/timeSpeed'
 import './bootstrap.min.css';
-
-// const http = require('http');
-// const hostname = '127.0.0.1';
-// const port = 888;
-
-// const server = http.createServer(function(req, res) {
-//     console.log("createServer", req, res)
-//     res.end('Hello, World!\n');
-// });
-
-// server.listen(port, hostname, function() {
-//     console.log("Server is running at %s:%s", hostname, port);
-// });
 
 class Show extends React.Component {
     render() {

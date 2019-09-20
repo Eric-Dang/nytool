@@ -1,5 +1,5 @@
 import React from 'react';
-import * as dataMgr from '../dataMgr';
+import * as dataMgr from '../../dataMgr';
 import './timeSpeed.css';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 const axios = require('axios');
@@ -10,20 +10,21 @@ class TimeSpeed extends React.Component {
         this.state = {
             connectList: Array(),
             speed: 0,
-            selectList: Array(),
+            selectList: Array(),            
         };
     }
 
+    recvServerData(response){
+        console.log("1111111111111111111", response.data);
+    }
     onclick(){
         const connectList = this.state.connectList.slice()
-        axios.get('http://localhost:999/user', {
+        axios.get('http://127.0.0.1:999/changeTimeSpeed', {
             params: {
                 speed: this.state.speed,
                 servers:JSON.stringify(connectList)
             }
-        }).then(function (response) {
-            console.log("1111111111111111111", response.data);
-        }).catch(function (error) {
+        }).then((response)=>{this.recvServerData(response)}).catch(function (error) {
             console.log("22222222222222222", error);
         });
     }
@@ -63,6 +64,7 @@ class TimeSpeed extends React.Component {
         this.setState({connectList:connectList})
         this.setState({selectList:selectList})
     }
+
     render() {
         const connectList = this.state.connectList.slice()
         connectList.forEach((v,i)=>{
