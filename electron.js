@@ -1,7 +1,7 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path')
 const url = require('url')
-require('./localserver.js')
+require('./localserver')
 
 // 保持一个对于 window 对象的全局引用，不然，当 JavaScript 被 GC，
 // window 会被自动地关闭

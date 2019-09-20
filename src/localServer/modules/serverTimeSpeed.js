@@ -1,4 +1,5 @@
-import * as dataMgr from '../../dataMgr';
+const {regNewReq,getDateStr} = require('../../serviceMgr')
+const {TelnetClient} = require('../base/TelnetClient')
 
 function processChangeTimeSpeed(clientData, response){
     var allServers = JSON.parse(clientData.servers)
@@ -32,4 +33,6 @@ function processChangeTimeSpeed(clientData, response){
     })
 }
 
-regNewReq('changeTimeSpeed', processChangeTimeSpeed)
+module.exports = {
+    init:function(){regNewReq('changeTimeSpeed', processChangeTimeSpeed)}
+}

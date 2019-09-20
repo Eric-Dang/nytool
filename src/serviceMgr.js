@@ -8,6 +8,7 @@ var clientReqProcess = {}
 // @proFun @clientData: 客户端发送的请求参数
 // @proFun @response: http对应的response对象(简单实用参考serverTimeSpeed.js)
 function regNewReq(page, proFun){
+    console.log('regNewReq', page, proFun)
     if(clientReqProcess[page]){
         console.error("regNewReq repeat reg! %s", page)
     }
@@ -27,7 +28,13 @@ function getReqProcessFun(page){
     }
 }
 
+function getDateStr() {
+    var d = new Date()
+    return String().concat(d.getFullYear(), "-", d.getMonth(), "-", d.getDay(), " ", d.getHours(), ":", d.getMinutes(), ":", d.getSeconds(), ".", d.getMilliseconds())
+}
+
 module.exports = {
     getReqProcessFun:getReqProcessFun,
-    regNewReq:regNewReq
+    regNewReq:regNewReq,
+    getDateStr:getDateStr
 }
