@@ -1,10 +1,24 @@
-var http = require('http');
-var {getReqProcessFun, getDateStr} = require('./src/serviceMgr')
+const fs    = require('fs');
+const path  = require('path');
+const http  = require('http');
+const {getReqProcessFun, getDateStr} = require('./src/serviceMgr')
 // ---
 // 导入功能模块
 // ---
-const {init} = require("./src/localServer/modules/serverTimeSpeed")
-init()
+
+function loadAllService(){
+    var rootDir = './src/localServer/modules'
+    var files = fs.readdirSync(rootDir);
+    files.forEach(function(file, index) {
+        var curPath = rootDir + "/" + file;
+        if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.fs') {
+            const {init} = require(curPath)
+            init()
+        }
+    });
+}
+
+loadAllService()
 
 function parsingRequest(data){
     var reqInfos = data.substr(1).split('?')
