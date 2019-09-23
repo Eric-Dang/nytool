@@ -7,11 +7,11 @@ const {getReqProcessFun, getDateStr} = require('./src/serviceMgr')
 // ---
 
 function loadAllService(){
-    var rootDir = './src/localServer/modules'
+    var rootDir = path.join(__dirname, './src/localServer/modules')
     var files = fs.readdirSync(rootDir);
     files.forEach(function(file, index) {
         var curPath = rootDir + "/" + file;
-        if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.fs') {
+        if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.js') {
             const {init} = require(curPath)
             init()
         }

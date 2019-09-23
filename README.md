@@ -3,7 +3,7 @@
 基础功能：
 1. telnet
 2. mysql
-
+http://192.168.10.11/NyMobile/NyServerTool.git
 # react
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

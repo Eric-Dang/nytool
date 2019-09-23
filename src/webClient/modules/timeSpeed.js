@@ -15,7 +15,7 @@ class TimeSpeed extends React.Component {
     }
 
     recvServerData(response){
-        console.log("1111111111111111111", response.data);
+        alert(response.data.info)
     }
     onclick(){
         const connectList = this.state.connectList.slice()
@@ -25,7 +25,7 @@ class TimeSpeed extends React.Component {
                 servers:JSON.stringify(connectList)
             }
         }).then((response)=>{this.recvServerData(response)}).catch(function (error) {
-            console.log("22222222222222222", error);
+            alert("异常：\n" + error.message)
         });
     }
 

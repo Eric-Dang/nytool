@@ -1,8 +1,10 @@
 {
-  "name": "timespeed",
+  "name": "nytool",
   "version": "0.1.0",
   "private": true,
   "main": "electron.js",
+  "description":"测试工具",
+  "author":"sy",
   "homepage": ".",
   "dependencies": {
     "axios": "^0.19.0",
