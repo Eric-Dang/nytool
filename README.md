@@ -1,5 +1,8 @@
-# nytool
-游戏工具链
+# 游戏工具链
+使用javaScript + react + electron开发的游戏工具平台。 
+基础功能：
+1. telnet
+2. mysql
 
 # react
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
