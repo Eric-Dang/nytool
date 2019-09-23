@@ -34,7 +34,7 @@ class TelnetClient{
         this.port = telnetConfig.port != undefined ? telnetConfig.port : 8080
         this.username = telnetConfig.username != undefined ? telnetConfig.username : 'root'
         this.password = telnetConfig.password != undefined ? telnetConfig.password : 'root'
-        this.timeout =  telnetConfig.timeout != undefined ? telnetConfig.timeout : 0
+        this.timeout =  telnetConfig.timeout != undefined ? telnetConfig.timeout : 1000
         this.loginPrompt = telnetConfig.loginPrompt != undefined ? telnetConfig.loginPrompt : 'Login: '
         this.passwordPrompt = telnetConfig.passwordPrompt != undefined ? telnetConfig.passwordPrompt : 'Password: '
         this.irs = telnetConfig.irs != undefined ? telnetConfig.irs : '\r\n'
