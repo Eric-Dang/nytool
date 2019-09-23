@@ -31,45 +31,14 @@ class QueryDB extends React.Component {
         });
     }
 
-    onadd(){
-        const connectList = this.state.connectList.slice()
-
-        var hasAdd = false
-        connectList.forEach((v) => {
-            if (v.ip == ipText.value && v.port == portText.value)
-                hasAdd = true
-        });
-
-        if (!hasAdd)
-        {
-            connectList.push({ip:ipText.value, port:portText.value, id:connectList.length + 1})
-            this.setState({connectList:connectList})
-        }
-    }
-    onspeed()
-    {
-        var multText = document.getElementById('mult');
-        this.setState({speed:multText.value})
-    }
-
     ondel()
     {
-        const connectList = this.state.connectList.slice()
-        const selectList = this.state.selectList.slice()
-        for(var i = selectList.length; i >= 0; i--)
-        {
-            if(selectList[i] == true)
-                connectList.splice(i, 1)
-        }
-        selectList.splice(0)
-        this.setState({connectList:connectList})
-        this.setState({selectList:selectList})
     }
 
     render() {
-        const connectList = this.state.connectList.slice()
-        connectList.forEach((v,i)=>{
-            connectList[i].id = i
+        const dbList = this.state.dbList.slice()
+        dbList.forEach((v,i)=>{
+            dbList[i].id = i
         })
 
 
@@ -97,14 +66,11 @@ class QueryDB extends React.Component {
         return (
             <div>
                 <div className="showdiv">
-                    <text className='title'>已添加服务器</text><br/><br/>
-                    <BootstrapTable data={connectList} striped={true} hover={true} selectRow={selectRowProp}>
+                    <BootstrapTable data={dbList} striped={true} hover={true} >
                         <TableHeaderColumn dataField="id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
                         <TableHeaderColumn dataField="ip" dataAlign="center" dataSort={true}>Server IP</TableHeaderColumn>
                         <TableHeaderColumn dataField="port" dataAlign="center">Server Port</TableHeaderColumn>
                     </BootstrapTable>
-                    <button className="execButton" onClick={()=>{this.onclick()}}> 执行 </button>
-                    <button className="delButton" onClick={()=>{this.ondel()}}> 删除 </button><br/>
                 </div>
                 <hr />
                 <div>

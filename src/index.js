@@ -4,6 +4,7 @@ import './index.css';
 import * as serviceWorker from "./serviceWorker";
 import * as dataMgr from './dataMgr';
 import './webClient/modules/timeSpeed'
+import './webClient/modules/querydb'
 import './bootstrap.min.css';
 
 class Show extends React.Component {
