@@ -44,3 +44,21 @@ text {
     margin-left: 60px;
 }
 
+
+.dbresult {
+    width: 50%;
+}
+
+.dbconfig {
+    width: 50%;    
+}
+
+.configPath {
+    width: 70%
+}
+
+.dbSql {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+}

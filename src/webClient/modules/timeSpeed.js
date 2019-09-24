@@ -19,7 +19,7 @@ class TimeSpeed extends React.Component {
     }
     onclick(){
         const connectList = this.state.connectList.slice()
-        axios.get('http://127.0.0.1:999/changeTimeSpeed', {
+        axios.get('http://localhost:999/changeTimeSpeed', {
             params: {
                 speed: this.state.speed,
                 servers:JSON.stringify(connectList)

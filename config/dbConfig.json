@@ -1,0 +1,20 @@
+{
+    "default":{
+        "userName":"root",
+        "password":"123456"
+    },
+    "dbList":[
+        {
+            "serverID":51,
+            "dbIP":"127.0.0.1",
+            "port":3306,
+            "dbName":"test"
+        },
+        {
+            "serverID":51,
+            "dbIP":"127.0.0.1",
+            "port":3306,
+            "dbName":"test"
+        }
+    ]
+}
