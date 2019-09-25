@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, globalShortcut} = require('electron');
 const path = require('path')
 const url = require('url')
 require('./localserver')
@@ -22,8 +22,6 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
     // 创建浏览器窗口。
     mainWindow = new BrowserWindow({width: 800, height: 600});
-    // if(app.isPackaged)
-        mainWindow.setAutoHideMenuBar(true)
 
     // 加载应用的 index.html
     //   mainWindow.loadURL("http://localhost:3001")    
@@ -33,7 +31,7 @@ app.on('ready', function() {
         slashes: true
         }))
     // 打开开发工具
-    // if(!app.isPackaged)
+    if(!app.isPackaged)
         mainWindow.openDevTools();
     mainWindow.flashFrame(true);
 
