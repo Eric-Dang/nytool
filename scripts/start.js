@@ -16,6 +16,7 @@ require('../config/env');
 
 
 const fs = require('fs');
+const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -61,6 +62,9 @@ if (process.env.HOST) {
   console.log();
 }
 
+// 开始生成ui配置文件
+processAllUIModules()
+
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
@@ -74,7 +78,8 @@ checkBrowsers(paths.appPath, isInteractive)
     if (port == null) {
       // We have not found a port.
       return;
-    }
+	}
+
     const config = configFactory('development');
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
@@ -143,3 +148,18 @@ checkBrowsers(paths.appPath, isInteractive)
     }
     process.exit(1);
   });
+
+
+function processAllUIModules(){
+    const rootDir = "./src/webClient/modules"
+    const files = fs.readdirSync(rootDir);
+    const wf = fs.openSync("./src/webClient/uiModules.js", 'w')
+    if(wf < 0) throw "客户端UI配置无法生成"
+    files.forEach(function(file, index) {
+        let curPath = rootDir + "/" + file;
+        if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.js') {
+            fs.writeFileSync(wf, "import \"./modules/" + file+ "\"\n")
+        }
+    });
+    fs.closeSync(wf)
+}

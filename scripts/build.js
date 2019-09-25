@@ -43,6 +43,9 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
+// 开始生成UI配置数据
+processAllUIModules();
+
 // Generate configuration
 const config = configFactory('production');
 
@@ -184,8 +187,22 @@ function build(previousFileSizes) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
-  });
+    fs.copySync(paths.appPublic, paths.appBuild, {
+        dereference: true,
+        filter: file => file !== paths.appHtml,
+    });
+}
+
+function processAllUIModules(){
+    const rootDir = "./src/webClient/modules"
+    const files = fs.readdirSync(rootDir);
+    const wf = fs.openSync("./src/webClient/uiModules.js", 'w')
+    if(wf < 0) throw "客户端UI配置无法生成"
+    files.forEach(function(file, index) {
+        let curPath = rootDir + "/" + file;
+        if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.js') {
+            fs.writeFileSync(wf, "import \"./modules/" + file+ "\"\n")
+        }
+    });
+    fs.closeSync(wf)
 }
