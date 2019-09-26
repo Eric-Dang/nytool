@@ -154,12 +154,15 @@ function processAllUIModules(){
     const rootDir = "./src/webClient/modules"
     const files = fs.readdirSync(rootDir);
     const wf = fs.openSync("./src/webClient/uiModules.js", 'w')
-    if(wf < 0) throw "客户端UI配置无法生成"
+	if(wf < 0) throw "客户端UI配置无法生成"
+	let wInfo = ""
     files.forEach(function(file, index) {
         let curPath = rootDir + "/" + file;
         if(fs.statSync(curPath).isFile() && path.extname(curPath) == '.js') {
-            fs.writeFileSync(wf, "import \"./modules/" + file+ "\"\n")
+			wInfo = wInfo + "import \"./modules/" + file + "\"\n"
         }
-    });
+	});
+	
+	fs.writeFileSync(wf, wInfo)
     fs.closeSync(wf)
 }

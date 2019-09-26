@@ -3,7 +3,28 @@
 基础功能：
 1. telnet
 2. mysql
-http://192.168.10.11/NyMobile/NyServerTool.git
+
+# 安装软件
+1. [nodejs](\\192.168.1.249\诺亚内\程序部\sy沙鹰\软件\node-v10.16.3-x64.msi)
+
+# 常用命令
+1. 开发测试命令
+   1. npm run start
+2. 打包生成桌面版
+   1. npm run build
+   2. npm run package
+
+# 开发使用目录说明
+开发只需要关注下面几个目录，工具会在打包以及测试时，自动生成关联文件，保证功能正常显示以及运行
+##  localServer 后台服务
+   1. base: 服务器基础支持 
+   2. modules: 本地服务模块(telnet服务器，链接mysql，tcp连接其他服务器，读取本地配置文件)
+
+## webClient 前端显示(web页面)
+   1. base: 前端通用功能接口
+   2. modules: 前端具体功能UI显示以及操作处理
+
+
 # react
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
