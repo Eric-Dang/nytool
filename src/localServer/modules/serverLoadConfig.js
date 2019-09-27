@@ -6,6 +6,7 @@ function loadNewConfig(clientData, response){
         let fd = fs.readFileSync(clientData.path)
         console.log("loadNewConfig", clientData.path)
         let configs = JSON.parse(fd)
+        response.setHeader("Access-Control-Allow-Origin","*")
         response.end(JSON.stringify({configs:configs, errorCode:'ok'}))
     }
     catch(error)

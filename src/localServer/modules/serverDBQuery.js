@@ -1,18 +1,17 @@
 const {regNewReq,getDateStr} = require('../../serviceMgr')
+const {queryDataFromDB} = require('../base/mysqlQuery')
 const fs = require("fs")
 
 function dbQuery(clientData, response){
-    try{
-        let fd = fs.readFileSync(clientData.path)
-        console.log("loadNewConfig", clientData.path)
-        let configs = JSON.parse(fd)
-        response.end(JSON.stringify({configs:configs, errorCode:'ok'}))
-    }
-    catch(error)
-    {
-        console.log("loadNewConfig error", error)
-        response.end(JSON.stringify({errorCode:error}))
-    }
+    const dbConfigs = JSON.parse(clientData.dbConfigs)
+
+    queryDataFromDB(dbConfigs, clientData.sql, (_c, _s, ret)=>{
+        console.log("dbQuery", ret)
+        let rets = JSON.stringify(ret)
+        response.setHeader("Access-Control-Allow-Origin","*")
+        response.write(rets)
+        response.end()
+    })
 }
 
 module.exports = {

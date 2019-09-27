@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 function rpcLoadConfig(path, callBack){
-        axios.get('http://127.0.0.1:999/loadConfig', {
+        axios.get('http://localhost:999/loadConfig', {
             params: {
                 path: path,
             }

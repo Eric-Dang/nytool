@@ -19,20 +19,7 @@ class QueryDB extends React.Component {
         console.log("1111111111111111111", response.data.keys, response.data.datas);
         this.setState({dbRet:response.data})
     }
-    onclick(){
-        const selectList = this.state.selectList.slice()
-        axios.get('http://127.0.0.1:999/dbQuery', {
-            params: {
-                dblist:selectList
-            }
-        }).then((response)=>{
-            this.recvServerData(response)
-        }).catch(function (error) {
-            console.log("22222222222222222", error);
-        });
-    }
-//E:\\GitHub\\nytool\\config\\dbConfig.json
-//E:\GitHub\nytool\config\dbConfig.json
+
     onloadConfig()
     {
         const configPathText = document.getElementById('configPath');
@@ -55,11 +42,30 @@ class QueryDB extends React.Component {
     onDBExecute()
     {
         const sqlText = document.getElementById('sql');
-        const connectList = this.state.connectList.slice()
-        axios.get('http://localhost:999/dbQuery', {
-            params: {
-                speed: this.state.speed,
-                servers:JSON.stringify(connectList)
+        const dbList = this.state.dbList.slice()
+        const selectList = this.state.selectList.slice()
+        let dbConfigs = []
+        selectList.forEach((v,i)=>{
+            console.log("selectList.forEach", v,i)
+            if(v == true && dbList[i]){
+                dbConfigs.push(dbList[i])
+            }
+            else{
+                alert("异常：\n 数据信息异常")
+                return
+            }
+        })
+
+        if(dbConfigs.length == 0)
+        {
+            alert("选择要查询的数据库")
+            return
+        }
+        console.log("sql", sqlText.value)
+        axios.get('http://localhost:999/dbQuery',{
+            params:{
+                dbConfigs:JSON.stringify(dbConfigs),
+                sql:sqlText.value
             }
         }).then((response)=>{this.recvServerData(response)}).catch(function (error) {
             alert("异常：\n" + error.message)
@@ -80,17 +86,40 @@ class QueryDB extends React.Component {
                 x._id = datas.length
                 datas.push(x)
             })
+
+            console.log("datas", datas)
     
             const tt = dbRet.keys.map((i, k)=>{
                 return (<TableHeaderColumn dataField={i} dataAlign="center">{i}</TableHeaderColumn>)
             })
-    
-            dbshows = (
-                <BootstrapTable data={datas} striped={true} hover={true}>
-                    <TableHeaderColumn dataField="_id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
-                    {tt}
-                </BootstrapTable>
-            )
+            
+            let showError = ""
+            dbRet.results.forEach((x)=>{
+                if(x.errorCode != 0){
+                    showError = showError + x.info + '\n'
+                }
+            })
+            let errorShow
+            if(showError.length > 0)
+            {
+                dbshows = (
+                    <div>
+                    <text>showError</text><hr/>
+                    <BootstrapTable data={datas} striped={true} hover={true}>
+                        <TableHeaderColumn dataField="_id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
+                        {tt}
+                    </BootstrapTable>
+                    </div>
+                )
+            }
+            else{
+                dbshows = (
+                    <BootstrapTable data={datas} striped={true} hover={true}>
+                        <TableHeaderColumn dataField="_id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
+                        {tt}
+                    </BootstrapTable>
+                )
+            }
         }
 
         const selectRowProp = {
@@ -115,7 +144,7 @@ class QueryDB extends React.Component {
                     <text>配置信息</text>
                     <div className="showdiv">
                         <text className="ipText">配置地址:</text>
-                        <textarea type="text" id="configPath" className="configPath"/>
+                        <textarea type="text" id="configPath" className="configPath" value="E:\\GitHub\\nytool\\configs\\dbConfig.json"/>
                         <button className="multButton" onClick={()=>{this.onloadConfig()}}>加载配置</button><br/>
                         <hr/>
                         <BootstrapTable data={dbList} striped={true} hover={true} selectRow={selectRowProp}>
@@ -130,7 +159,7 @@ class QueryDB extends React.Component {
                     <text>查询结果</text>
                     <div className="showdiv">
                         <text className="ipText">SQL:</text>
-                        <textarea type="text" id="sql" className="dbSql"/>
+                        <textarea type="text" id="sql" className="dbSql" value="select * from test;"/>
                         <button className="dbExecute" onClick={()=>{this.onDBExecute()}}>执行</button><br/>
                         <hr/>
                         {dbshows}
