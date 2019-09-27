@@ -144,7 +144,7 @@ class QueryDB extends React.Component {
                     <text>配置信息</text>
                     <div className="showdiv">
                         <text className="ipText">配置地址:</text>
-                        <textarea type="text" id="configPath" className="configPath" value="E:\\GitHub\\nytool\\configs\\dbConfig.json"/>
+                        <textarea type="text" id="configPath" className="configPath"/>
                         <button className="multButton" onClick={()=>{this.onloadConfig()}}>加载配置</button><br/>
                         <hr/>
                         <BootstrapTable data={dbList} striped={true} hover={true} selectRow={selectRowProp}>
@@ -159,7 +159,7 @@ class QueryDB extends React.Component {
                     <text>查询结果</text>
                     <div className="showdiv">
                         <text className="ipText">SQL:</text>
-                        <textarea type="text" id="sql" className="dbSql" value="select * from test;"/>
+                        <textarea type="text" id="sql" className="dbSql"/>
                         <button className="dbExecute" onClick={()=>{this.onDBExecute()}}>执行</button><br/>
                         <hr/>
                         {dbshows}
