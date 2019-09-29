@@ -83,7 +83,8 @@
     "test": "node scripts/test.js",
     "ebuild": "electron-builder --dir",
     "package": "electron-packager . nytool win32 x64 --overwrite",
-    "electron-start": "electron ."
+    "electron-start": "electron .",
+    "server":"node localserver.js"
   },
   "eslintConfig": {
     "extends": "react-app"

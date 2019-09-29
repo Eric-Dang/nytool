@@ -9,7 +9,8 @@
 
 # 常用命令
 1. 开发测试命令
-   1. npm run start
+   1. npm run start     启动UI功能
+   2. npm run server    启动后端功能
 2. 打包生成桌面版
    1. npm run build
    2. npm run package
