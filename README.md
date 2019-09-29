@@ -25,6 +25,9 @@
    1. base: 前端通用功能接口
    2. modules: 前端具体功能UI显示以及操作处理
 
+## 配置文件模板说明
+   1. 数据库服务器配置 configs/dbConfig.json
+   2. telnet配置 configs/telnetServer.json
 
 # react
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
