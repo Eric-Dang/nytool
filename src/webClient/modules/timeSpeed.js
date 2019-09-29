@@ -87,9 +87,6 @@ class TimeSpeed extends React.Component {
 
     render() {
         const connectList = this.state.connectList.slice()
-        connectList.forEach((v,i)=>{
-            connectList[i].id = i
-        })
         const selectRowProp = {
             mode: 'checkbox',
             bgColor: 'yellow',
@@ -97,11 +94,15 @@ class TimeSpeed extends React.Component {
             onSelect:(data,isSelected, event, rowIndex)=>{
                 console.log("select id",data,isSelected, event, rowIndex)
                 const selectList = this.state.selectList.slice()
-                if(isSelected)
-                    selectList[rowIndex] = true
-                else
-                    selectList[rowIndex] = false
-
+                selectList[rowIndex] = isSelected
+                this.setState({selectList:selectList})
+            },
+            onSelectAll:(isSelected, rows)=>{
+                console.log("onSelectAll",isSelected, rows)
+                const selectList = this.state.selectList.slice()
+                rows.forEach((x, rowIndex)=>{
+                    selectList[rowIndex] = isSelected
+                })
                 this.setState({selectList:selectList})
             }
         };

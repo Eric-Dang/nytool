@@ -42,6 +42,11 @@ class QueryDB extends React.Component {
     onDBExecute()
     {
         const sqlText = document.getElementById('sql');
+        if(sqlText.value.length == 0){
+            alert("异常：\n SQL语句不能为空")
+            return
+        }
+
         const dbList = this.state.dbList.slice()
         const selectList = this.state.selectList.slice()
         let dbConfigs = []
@@ -82,16 +87,21 @@ class QueryDB extends React.Component {
         const dbRet = this.state.dbRet
         if(dbRet){
             const datas = []
-            dbRet.datas.forEach((x)=>{
-                x._id = datas.length
-                datas.push(x)
-            })
+            if(dbRet.datas){
+                dbRet.datas.forEach((x)=>{
+                    x._id = datas.length
+                    datas.push(x)
+                })
+            }
 
             console.log("datas", datas)
     
-            const tt = dbRet.keys.map((i, k)=>{
-                return (<TableHeaderColumn dataField={i} dataAlign="center">{i}</TableHeaderColumn>)
-            })
+            const tt = (<hr/>)
+            if (dbRet.keys){
+                dbRet.keys.map((i, k)=>{
+                    return (<TableHeaderColumn dataField={i} dataAlign="center">{i}</TableHeaderColumn>)
+                })
+            }
             
             let showError = ""
             dbRet.results.forEach((x)=>{
@@ -104,7 +114,7 @@ class QueryDB extends React.Component {
             {
                 dbshows = (
                     <div>
-                    <text>showError</text><hr/>
+                    <text>{showError}</text><hr/>
                     <BootstrapTable data={datas} striped={true} hover={true}>
                         <TableHeaderColumn dataField="_id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
                         {tt}
@@ -134,6 +144,14 @@ class QueryDB extends React.Component {
                 else
                     selectList[rowIndex] = false
 
+                this.setState({selectList:selectList})
+            },
+            onSelectAll:(isSelected, rows)=>{
+                console.log("onSelectAll", isSelected, rows)
+                const selectList = this.state.selectList.slice()
+                rows.forEach((x, rowIndex)=>{
+                    selectList[rowIndex] = isSelected
+                })
                 this.setState({selectList:selectList})
             }
         };
